@@ -1,0 +1,12 @@
+body {
+	margin: 10px auto;
+	width: 950px;
+}
+
+.container {
+	width: 100%;
+	position: relative;
+	position: relative;
+	border: 1px solid #333;
+	padding: 30px;
+}
