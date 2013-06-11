@@ -15,20 +15,21 @@
 
 	<?php echo $form->errorSummary($model); ?>
 
-	<div class="row">
-		<?php echo $form->labelEx($model,'staff_role_id'); ?>
-		<?php echo $form->dropDownList($model, 'staff_role_id', CHtml::listData(
-		StaffRole::model()->findAll(), 'id', 'description'),
-		array('prompt' => 'Select Level')); ?>
-		<?php echo $form->error($model,'staff_role_id'); ?>
-	</div>
-
+	
 	<div class="row">
 		<?php echo $form->labelEx($model,'service_id'); ?>
 		<?php echo $form->dropDownList($model, 'service_id', CHtml::listData(
 		Service::model()->findAll(), 'id', 'description'),
 		array('prompt' => 'Select Service')); ?>
 		<?php echo $form->error($model,'service_id'); ?>
+	</div>
+	
+	<div class="row">
+		<?php echo $form->labelEx($model,'staff_role_id'); ?>
+		<?php echo $form->dropDownList($model, 'staff_role_id', CHtml::listData(
+		StaffRole::model()->findAll(), 'id', 'description'),
+		array('prompt' => 'Select Level')); ?>
+		<?php echo $form->error($model,'staff_role_id'); ?>
 	</div>
 
 	<div class="row">
