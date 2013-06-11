@@ -90,4 +90,8 @@ class Person extends CActiveRecord
 			'criteria'=>$criteria,
 		));
 	}
+	
+	public function getFullName() {
+		return $this->first_name . ' ' . $this->last_name;
+	}
 }
