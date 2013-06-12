@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Jun 11, 2013 at 03:25 PM
+-- Generation Time: Jun 12, 2013 at 09:59 PM
 -- Server version: 5.1.44
 -- PHP Version: 5.3.1
 
@@ -30,7 +30,7 @@ CREATE TABLE IF NOT EXISTS `person` (
   `first_name` varchar(256) NOT NULL,
   `last_name` varchar(256) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=5 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=9 ;
 
 --
 -- Dumping data for table `person`
@@ -40,7 +40,11 @@ INSERT INTO `person` (`id`, `first_name`, `last_name`) VALUES
 (1, 'Adam', 'Carter'),
 (2, 'Isobelle', 'Lamb'),
 (3, 'Jimmy', 'Sharpe'),
-(4, 'Paul', 'Kemp');
+(4, 'Paul', 'Kemp'),
+(5, 'Daniel', 'Anderson'),
+(6, 'Kelly', 'Reedy'),
+(7, 'Natalie', 'Doxey'),
+(8, 'Megan', 'Mullaney');
 
 -- --------------------------------------------------------
 
@@ -115,7 +119,7 @@ CREATE TABLE IF NOT EXISTS `staff` (
   PRIMARY KEY (`id`),
   KEY `person_id` (`person_id`),
   KEY `staff_role_id` (`staff_role_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=5 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=9 ;
 
 --
 -- Dumping data for table `staff`
@@ -125,7 +129,11 @@ INSERT INTO `staff` (`id`, `person_id`, `staff_role_id`) VALUES
 (1, 1, 4),
 (2, 2, 3),
 (3, 3, 4),
-(4, 4, 1);
+(4, 4, 4),
+(5, 5, 4),
+(6, 6, 3),
+(7, 7, 2),
+(8, 8, 1);
 
 -- --------------------------------------------------------
 
