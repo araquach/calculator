@@ -17,13 +17,17 @@
 
 	<div class="row">
 		<?php echo $form->labelEx($model,'person_id'); ?>
-		<?php echo $form->textField($model,'person_id'); ?>
+		<?php echo $form->dropDownList($model, 'person_id', CHtml::listData(
+		Person::model()->findAll(), 'id', 'fullName'),
+		array('prompt' => 'Select Person')); ?>
 		<?php echo $form->error($model,'person_id'); ?>
 	</div>
 
 	<div class="row">
 		<?php echo $form->labelEx($model,'staff_role_id'); ?>
-		<?php echo $form->textField($model,'staff_role_id'); ?>
+		<?php echo $form->dropDownList($model, 'staff_role_id', CHtml::listData(
+		StaffRole::model()->findAll(), 'id', 'description'),
+		array('prompt' => 'Select Role')); ?>
 		<?php echo $form->error($model,'staff_role_id'); ?>
 	</div>
 
