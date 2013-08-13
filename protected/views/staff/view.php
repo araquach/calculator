@@ -22,9 +22,8 @@ $this->menu=array(
 	'data'=>$model,
 	'attributes'=>array(
 		'id',
-		array(
-			'name'=>'Name'.':',
-			'value'=>Person::model()->getFullName();
+		array('name'=>'Name: ', 
+			'value'=>CHtml::encode($model->person->getFullName())
 			),
 		'staffRole.description',
 	),
