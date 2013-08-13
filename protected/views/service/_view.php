@@ -24,8 +24,6 @@
 	<b><?php echo CHtml::encode($data->getAttributeLabel('offset')); ?>:</b>
 	<?php echo CHtml::encode($data->offset); ?>
 	<br />
-	
-	<?php echo CHtml::encode($data->calculatePrice()); ?>
 
 
 </div>
