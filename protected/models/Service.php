@@ -95,4 +95,14 @@ class Service extends CActiveRecord
 			'criteria'=>$criteria,
 		));
 	}
+	
+	public function calculatePrice() 
+	{
+		$cpm = StaffRole::model()->getCpm();
+		$time = $this->time;
+		
+		$price = $cpm * $time;
+		
+		return $price;
+	}
 }

@@ -91,4 +91,9 @@ class StaffRole extends CActiveRecord
 			'criteria'=>$criteria,
 		));
 	}
+	
+	public static function getCpm()
+	{
+		return $cpm;
+	}
 }
