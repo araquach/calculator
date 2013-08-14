@@ -28,7 +28,7 @@ class ServiceController extends Controller
 	{
 		return array(
 			array('allow',  // allow all users to perform 'index' and 'view' actions
-				'actions'=>array('index','view'),
+				'actions'=>array('index','view','price'),
 				'users'=>array('*'),
 			),
 			array('allow', // allow authenticated user to perform 'create' and 'update' actions
@@ -86,7 +86,7 @@ class ServiceController extends Controller
 	 */
 	public function actionUpdate($id)
 	{
-		$model=$this->loadModel($id);
+		
 
 		// Uncomment the following line if AJAX validation is needed
 		// $this->performAjaxValidation($model);
@@ -141,6 +141,17 @@ class ServiceController extends Controller
 		$this->render('admin',array(
 			'model'=>$model,
 		));
+	}
+	
+	public function actionPrice($id) {
+		
+		$model=$this->loadModel($id);
+		
+		$time = $model->time;
+		
+		$data = Service::model()->getCalculatedPrice($time,20);
+					
+		$this->render('price',array('data'=>$data));
 	}
 
 	/**
