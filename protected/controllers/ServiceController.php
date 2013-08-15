@@ -36,7 +36,7 @@ class ServiceController extends Controller
 				'users'=>array('@'),
 			),
 			array('allow', // allow admin user to perform 'admin' and 'delete' actions
-				'actions'=>array('admin','delete'),
+				'actions'=>array('admin','delete','update'),
 				'users'=>array('admin'),
 			),
 			array('deny',  // deny all users
@@ -86,7 +86,7 @@ class ServiceController extends Controller
 	 */
 	public function actionUpdate($id)
 	{
-		
+		$model=$this->loadModel($id);
 
 		// Uncomment the following line if AJAX validation is needed
 		// $this->performAjaxValidation($model);
@@ -153,6 +153,7 @@ class ServiceController extends Controller
 					
 		$this->render('price',array('data'=>$data));
 	}
+	
 
 	/**
 	 * Returns the data model based on the primary key given in the GET variable.

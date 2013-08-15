@@ -102,5 +102,5 @@ class Service extends CActiveRecord
 		
 		return $price;
 	}
-	
+
 }
