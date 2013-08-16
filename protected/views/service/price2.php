@@ -6,13 +6,13 @@
 <h1>This is the pricing page</h1>
 
 
-<p>Total: <?php echo $data ?></p>
+<h2>Total: &pound;<?php echo $data ?></h2>
 
-<p>Cost: <?php echo $cost ?></p>
+<p>Cost: &pound;<?php echo $cost ?></p>
 
-<p>Time: <?php echo $time ?></p>
+<p>Time: &pound;<?php echo $time ?></p>
 
-<p>Offset: <?php echo $offset ?></p>
+<p>Offset: &pound;<?php echo $offset ?></p>
 
 
 

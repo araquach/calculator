@@ -96,9 +96,9 @@ class Service extends CActiveRecord
 		));
 	}
 	
-	public function getCalculatedPrice($time, $employeeCost) {
+	public function getCalculatedPrice($time, $employeeCost, $offset) {
 		
-		$price = $time * $employeeCost;
+		$price = ($time * $employeeCost) + $offset;
 		
 		return $price;
 	}
