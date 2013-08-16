@@ -163,11 +163,11 @@ class ServiceController extends Controller
 	public function actionPrice2($id,$pid) {
 		
 		$model=$this->loadModel($id,$pid);
-		$time = Service::model()->find('id=:id', array(':id'=>$pid));
-		$cost = StaffRole::model()->find('id=:id', array(':id'=>$id)); 				
-		$data = Service::model()->getCalculatedPrice($time->time,$cost->cpm,$time->offset);
+		$service = Service::model()->find('id=:id', array(':id'=>$pid));
+		$role = StaffRole::model()->find('id=:id', array(':id'=>$id)); 				
+		$data = Service::model()->getCalculatedPrice($service->time,$role->cpm,$service->offset);
 			
-		$this->render('price2',array('data'=>$data, 'cost'=>$cost->cpm, 'time'=>$time->time, 'offset'=>$time->offset));
+		$this->render('price2',array('data'=>$data, 'role'=>$role, 'service'=>$service));
 	}
 	
 	
