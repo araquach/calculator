@@ -16,7 +16,7 @@
 <div class="form">
 
 <?php $form=$this->beginWidget('CActiveForm', array(
-	'id'=>'contact-form',
+	'id'=>'select-form',
 	'enableClientValidation'=>true,
 	'clientOptions'=>array(
 		'validateOnSubmit'=>true,
@@ -41,7 +41,7 @@
 		Service::model()->findAll(), 'id', 'description'),
 		array('prompt' => 'Select Service')); ?>
 		<?php echo $form->error($model,'service'); ?>
-	</div>
+	</div>	
 
 	<div class="row buttons">
 		<?php echo CHtml::submitButton('Submit'); ?>
@@ -50,6 +50,7 @@
 <?php $this->endWidget(); ?>
 
 </div><!-- form -->
+
 
 
 
