@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Jun 12, 2013 at 09:59 PM
+-- Generation Time: Aug 16, 2013 at 04:51 PM
 -- Server version: 5.1.44
 -- PHP Version: 5.3.1
 
@@ -30,7 +30,7 @@ CREATE TABLE IF NOT EXISTS `person` (
   `first_name` varchar(256) NOT NULL,
   `last_name` varchar(256) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=9 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=6 ;
 
 --
 -- Dumping data for table `person`
@@ -40,11 +40,7 @@ INSERT INTO `person` (`id`, `first_name`, `last_name`) VALUES
 (1, 'Adam', 'Carter'),
 (2, 'Isobelle', 'Lamb'),
 (3, 'Jimmy', 'Sharpe'),
-(4, 'Paul', 'Kemp'),
-(5, 'Daniel', 'Anderson'),
-(6, 'Kelly', 'Reedy'),
-(7, 'Natalie', 'Doxey'),
-(8, 'Megan', 'Mullaney');
+(4, 'Paul', 'Kemp');
 
 -- --------------------------------------------------------
 
@@ -54,7 +50,10 @@ INSERT INTO `person` (`id`, `first_name`, `last_name`) VALUES
 
 CREATE TABLE IF NOT EXISTS `service` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
+  `iris_code` varchar(10) NOT NULL,
   `description` varchar(256) NOT NULL,
+  `time` int(4) NOT NULL,
+  `offset` decimal(5,2) NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=5 ;
 
@@ -62,49 +61,11 @@ CREATE TABLE IF NOT EXISTS `service` (
 -- Dumping data for table `service`
 --
 
-INSERT INTO `service` (`id`, `description`) VALUES
-(1, 'Cut Dry and Style'),
-(2, 'Dry and Style'),
-(3, 'Full Head Highlights'),
-(4, 'Half Head Highlights');
-
--- --------------------------------------------------------
-
---
--- Table structure for table `service_role_price`
---
-
-CREATE TABLE IF NOT EXISTS `service_role_price` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `staff_role_id` int(11) NOT NULL,
-  `service_id` int(11) NOT NULL,
-  `price` decimal(4,2) DEFAULT NULL,
-  PRIMARY KEY (`id`),
-  KEY `staff_role_id` (`staff_role_id`),
-  KEY `service_id` (`service_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=17 ;
-
---
--- Dumping data for table `service_role_price`
---
-
-INSERT INTO `service_role_price` (`id`, `staff_role_id`, `service_id`, `price`) VALUES
-(1, 1, 1, '10.00'),
-(2, 2, 1, '20.00'),
-(3, 3, 1, '30.00'),
-(4, 4, 1, '40.00'),
-(5, 1, 2, '5.00'),
-(6, 2, 2, '10.00'),
-(7, 3, 2, '15.00'),
-(8, 4, 2, '20.00'),
-(9, 1, 3, '20.00'),
-(10, 2, 3, '40.00'),
-(11, 3, 3, '60.00'),
-(12, 4, 3, '80.00'),
-(13, 1, 4, '15.00'),
-(14, 2, 4, '30.00'),
-(15, 3, 4, '45.00'),
-(16, 4, 4, '60.00');
+INSERT INTO `service` (`id`, `iris_code`, `description`, `time`, `offset`) VALUES
+(1, 'CDS', 'Cut Dry and Style', 45, '0.00'),
+(2, 'DS', 'Dry and Style', 30, '0.00'),
+(3, 'C60', 'Full Head Highlights', 60, '6.00'),
+(4, 'C45', 'Half Head Highlights', 45, '4.00');
 
 -- --------------------------------------------------------
 
@@ -119,7 +80,7 @@ CREATE TABLE IF NOT EXISTS `staff` (
   PRIMARY KEY (`id`),
   KEY `person_id` (`person_id`),
   KEY `staff_role_id` (`staff_role_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=9 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=6 ;
 
 --
 -- Dumping data for table `staff`
@@ -129,11 +90,7 @@ INSERT INTO `staff` (`id`, `person_id`, `staff_role_id`) VALUES
 (1, 1, 4),
 (2, 2, 3),
 (3, 3, 4),
-(4, 4, 4),
-(5, 5, 4),
-(6, 6, 3),
-(7, 7, 2),
-(8, 8, 1);
+(4, 4, 1);
 
 -- --------------------------------------------------------
 
@@ -144,6 +101,7 @@ INSERT INTO `staff` (`id`, `person_id`, `staff_role_id`) VALUES
 CREATE TABLE IF NOT EXISTS `staff_role` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `description` varchar(256) NOT NULL,
+  `cpm` decimal(4,2) NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=5 ;
 
@@ -151,26 +109,19 @@ CREATE TABLE IF NOT EXISTS `staff_role` (
 -- Dumping data for table `staff_role`
 --
 
-INSERT INTO `staff_role` (`id`, `description`) VALUES
-(1, 'Junior'),
-(2, 'Stylist'),
-(3, 'Senior Stylist'),
-(4, 'Director');
+INSERT INTO `staff_role` (`id`, `description`, `cpm`) VALUES
+(1, 'Junior', '0.25'),
+(2, 'Stylist', '0.50'),
+(3, 'Senior Stylist', '1.00'),
+(4, 'Director', '1.50');
 
 --
 -- Constraints for dumped tables
 --
 
 --
--- Constraints for table `service_role_price`
---
-ALTER TABLE `service_role_price`
-  ADD CONSTRAINT `service_role_price_ibfk_3` FOREIGN KEY (`staff_role_id`) REFERENCES `staff_role` (`id`) ON DELETE CASCADE,
-  ADD CONSTRAINT `service_role_price_ibfk_2` FOREIGN KEY (`service_id`) REFERENCES `service` (`id`) ON DELETE CASCADE;
-
---
 -- Constraints for table `staff`
 --
 ALTER TABLE `staff`
-  ADD CONSTRAINT `staff_ibfk_2` FOREIGN KEY (`staff_role_id`) REFERENCES `staff_role` (`id`) ON DELETE CASCADE,
-  ADD CONSTRAINT `staff_ibfk_1` FOREIGN KEY (`person_id`) REFERENCES `person` (`id`) ON DELETE CASCADE;
+  ADD CONSTRAINT `staff_ibfk_1` FOREIGN KEY (`person_id`) REFERENCES `person` (`id`) ON DELETE CASCADE,
+  ADD CONSTRAINT `staff_ibfk_2` FOREIGN KEY (`staff_role_id`) REFERENCES `staff_role` (`id`) ON DELETE CASCADE;
