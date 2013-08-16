@@ -28,7 +28,7 @@ class ServiceController extends Controller
 	{
 		return array(
 			array('allow',  // allow all users to perform 'index' and 'view' actions
-				'actions'=>array('index','view','price'),
+				'actions'=>array('index','view','price','price2'),
 				'users'=>array('*'),
 			),
 			array('allow', // allow authenticated user to perform 'create' and 'update' actions
@@ -143,16 +143,34 @@ class ServiceController extends Controller
 		));
 	}
 	
-	public function actionPrice($id) {
-		
-		$model=$this->loadModel($id);
-		
-		$time = $model->time;
-		
-		$data = Service::model()->getCalculatedPrice($time,20);
-					
-		$this->render('price',array('data'=>$data));
+	public function actionPrice() {
+	
+		$model = new ServiceSelectForm;
+		if(isset($_POST['ServiceSelectForm']))
+				{
+					$model->attributes=$_POST['ServiceSelectForm'];
+					if($model->validate())
+					{
+						$this->redirect(array('price2','id'=>$model->level, 'pid'=>$model->service));
+					}
+				}
+			
+				
+		$this->render('price', array('model'=>$model));
 	}
+	
+	
+	public function actionPrice2($id,$pid) {
+		
+		$model=$this->loadModel($id,$pid);
+		$time = Service::model()->find('id=:id', array(':id'=>$pid));
+		$cost = StaffRole::model()->find('id=:id', array(':id'=>$id)); 				
+		$data = Service::model()->getCalculatedPrice($time->time,$cost->cpm,$time->offset);
+			
+		$this->render('price2',array('data'=>$data, 'cost'=>$cost->cpm, 'time'=>$time->time, 'offset'=>$time->offset));
+	}
+	
+	
 	
 
 	/**
