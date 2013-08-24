@@ -28,7 +28,7 @@ class ServiceController extends Controller
 	{
 		return array(
 			array('allow',  // allow all users to perform 'index' and 'view' actions
-				'actions'=>array('index','view','price','price2'),
+				'actions'=>array('index','view','price','price2','price3'),
 				'users'=>array('*'),
 			),
 			array('allow', // allow authenticated user to perform 'create' and 'update' actions
@@ -142,7 +142,7 @@ class ServiceController extends Controller
 			'model'=>$model,
 		));
 	}
-	
+	/*
 	public function actionPrice() {
 	
 		$model = new ServiceSelectForm;
@@ -158,8 +158,27 @@ class ServiceController extends Controller
 				
 		$this->render('price', array('model'=>$model));
 	}
+	*/
+	
+	public function actionPrice() {
+	
+		$model = new ServiceSelectForm;
+		if(isset($_POST['ServiceSelectForm']))
+				{
+					$model->attributes=$_POST['ServiceSelectForm'];
+					if($model->validate())
+					{
+						Yii::app()->session->add('ServiceSelectForm',$model);
+						$this->redirect(array('price2'));
+					}
+				}
+			
+				
+		$this->render('price', array('model'=>$model));
+	}
 	
 	
+	/*
 	public function actionPrice2($id,$pid) {
 		
 		$service = Service::model()->find('id=:id', array(':id'=>$pid));
@@ -168,10 +187,19 @@ class ServiceController extends Controller
 			
 		$this->render('price2',array('data'=>$data, 'role'=>$role, 'service'=>$service));
 	}
+	*/
 	
-	
-	
-
+	public function actionPrice2() {
+		
+		$model=Yii::app()->session->get('ServiceSelectForm');
+		
+		$service = Service::model()->find('id=:id', array(':id'=>$model->service));
+		$role = StaffRole::model()->find('id=:id', array(':id'=>$model->level)); 				
+		$data = Service::model()->getCalculatedPrice($service->time,$role->cpm,$service->offset);	
+			
+		$this->render('price2',array('data'=>$data, 'role'=>$role, 'service'=>$service));
+	}
+		
 	/**
 	 * Returns the data model based on the primary key given in the GET variable.
 	 * If the data model is not found, an HTTP exception will be raised.
