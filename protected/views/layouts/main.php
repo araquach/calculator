@@ -15,11 +15,7 @@
 	$this->widget('ext.widgets.googleAnalytics.EGoogleAnalyticsWidget',
 			array('account'=>'**-*******-*','domainName'=>'template.com'));
 	*/?>
-	
-	
-	<script src="scripts/mootools_core.js "type="text/javascript"></script>
-	<script src="scripts/mootools_more.js "type="text/javascript"></script>
-	<script src="scripts/modernizr.js "type="text/javascript"></script>
+
 
 	<title><?php echo CHtml::encode($this->pageTitle); ?></title>
 </head>
