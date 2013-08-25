@@ -15,6 +15,24 @@
 <div class="row buttons">
 <?php echo CHtml::button('Add Task', array(
 	'class'=>'tasks-add')) ?>
+	
+<script>
+			$(".tasks-add").click(function(){
+				$.ajax({
+					success: function(html){
+						$(".tasks").append(html);
+					},
+					type: 'get',
+					url: '<?php echo $this->createUrl('field')?>',
+					data: {
+						index: $(".tasks li").size()
+					},
+					cache: false,
+					dataType: 'html'
+				});
+			});
+</script>
+	
 <?php echo CHtml::submitButton('Save') ?>
 </div>
 <?php echo CHtml::endForm() ?>
