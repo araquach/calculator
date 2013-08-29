@@ -16,6 +16,7 @@ class ServiceController extends Controller
 		return array(
 			'accessControl', // perform access control for CRUD operations
 			'postOnly + delete', // we only allow deletion via POST request
+			'ajaxOnly + field'
 		);
 	}
 
@@ -176,18 +177,6 @@ class ServiceController extends Controller
 				
 		$this->render('price', array('model'=>$model));
 	}
-	
-	
-	/*
-	public function actionPrice2($id,$pid) {
-		
-		$service = Service::model()->find('id=:id', array(':id'=>$pid));
-		$role = StaffRole::model()->find('id=:id', array(':id'=>$id)); 				
-		$data = Service::model()->getCalculatedPrice($service->time,$role->cpm,$service->offset);
-			
-		$this->render('price2',array('data'=>$data, 'role'=>$role, 'service'=>$service));
-	}
-	*/
 	
 	public function actionPrice2() {
 		
