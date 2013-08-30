@@ -16,7 +16,7 @@ class ServiceController extends Controller
 		return array(
 			'accessControl', // perform access control for CRUD operations
 			'postOnly + delete', // we only allow deletion via POST request
-			'ajaxOnly + field'
+			'ajaxOnly + field',
 		);
 	}
 
@@ -29,7 +29,7 @@ class ServiceController extends Controller
 	{
 		return array(
 			array('allow',  // allow all users to perform 'index' and 'view' actions
-				'actions'=>array('index','view','price','price2','price3'),
+				'actions'=>array('index','view','price','price2','price3','field'),
 				'users'=>array('*'),
 			),
 			array('allow', // allow authenticated user to perform 'create' and 'update' actions
@@ -160,7 +160,7 @@ class ServiceController extends Controller
 		$this->render('price', array('model'=>$model));
 	}
 	*/
-	
+	/*
 	public function actionPrice() {
 	
 		$model = new ServiceSelectForm;
@@ -177,6 +177,43 @@ class ServiceController extends Controller
 				
 		$this->render('price', array('model'=>$model));
 	}
+	*/
+	public function actionPrice() {
+			
+		$models = array();
+	
+		if(!empty($_POST['ServiceSelectForm']))
+		{
+			foreach($_POST['ServiceSelectForm'] as $serviceData)
+			{
+				$model = new ServiceSelectForm();
+				$model->setAttributes($serviceData);
+				if($model->validate())
+					$models[] = $model;
+			}
+		}
+	
+		if(!empty($models)){
+				Yii::app()->session->add('ServiceSelectForm',$model);
+				$this->redirect(array('price2'));
+		}
+		else
+			$models[] = new ServiceSelectForm();
+	
+		$this->render('price', array(
+			'models' => $models,
+		));
+	}
+	
+	public function actionField($index)
+	{
+		$model = new ServiceSelectForm();
+		$this->renderPartial('_service', array(
+			'model' => $model,
+			'index' => $index,
+		));
+	}
+	
 	
 	public function actionPrice2() {
 		
