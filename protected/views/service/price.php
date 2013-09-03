@@ -1,51 +1,45 @@
-<?php
-/* @var $this ServiceController */
-/* @var $dataProvider CActiveDataProvider */
-?>
-
-<h1>This is the pricing page</h1>
-
-
-
-<?php
-	Yii::app()->clientScript->registerCoreScript('jquery');
-?>
-
 <div class="form">
-<?php echo CHtml::beginForm() ?>
-<ul class="services">
-<?php for($i=0; $i<count($models); $i++): ?>
-<?php $this->renderPartial('_service', array(
-	'model'=>$models[$i],
-	'index'=>$i,
-)) ?>
-<?php endfor ?>
-</ul>
-<div class="row buttons">
-<?php echo CHtml::button('Add Another Service', array(
-	'class'=>'service-add')) ?>
+
+<?php $form=$this->beginWidget('CActiveForm', array(
+	'id'=>'select-form',
+	'enableClientValidation'=>true,
+	'clientOptions'=>array(
+		'validateOnSubmit'=>true,
+	),
+)); ?>
+
+	<p class="note">Fields with <span class="required">*</span> are required.</p>
+
+	<?php echo $form->errorSummary($model); ?>
+
+	<div class="row">
+		<?php echo $form->labelEx($model,'level'); ?>
+		<?php echo $form->dropDownList($model, 'level', CHtml::listData(
+		StaffRole::model()->findAll(), 'id', 'description'),
+		array('prompt' => 'Select level')); ?>
+		<?php echo $form->error($model,'level'); ?>
+	</div>
+
+	<div class="row">
+		<?php echo $form->labelEx($model,'service1'); ?>
+		<?php echo $form->dropDownList($model, 'service1', CHtml::listData(
+		Service::model()->findAll(), 'id', 'description'),
+		array('prompt' => 'Select Service')); ?>
+		<?php echo $form->error($model,'service1'); ?>
+	</div>	
 	
-<script>
-			$(".service-add").click(function(){
-				$.ajax({
-					success: function(html){
-						$(".services").append(html);
-					},
-					type: 'get',
-					url: '<?php echo $this->createUrl('field')?>',
-					data: {
-						index: $(".services li").size()
-					},
-					cache: false,
-					dataType: 'html'
-				});
-			});
-</script>
-	
-<?php echo CHtml::submitButton('Save') ?>
-</div>
-<?php echo CHtml::endForm() ?>
-</div>
+	<div class="row">
+		<?php echo $form->labelEx($model,'service2'); ?>
+		<?php echo $form->dropDownList($model, 'service2', CHtml::listData(
+		Service::model()->findAll(), 'id', 'description'),
+		array('prompt' => 'Select Service')); ?>
+		<?php echo $form->error($model,'service2'); ?>
+	</div>	
 
+	<div class="row buttons">
+		<?php echo CHtml::submitButton('Submit'); ?>
+	</div>
 
+<?php $this->endWidget(); ?>
 
+</div> 

@@ -160,7 +160,7 @@ class ServiceController extends Controller
 		$this->render('price', array('model'=>$model));
 	}
 	*/
-	/*
+	
 	public function actionPrice() {
 	
 		$model = new ServiceSelectForm;
@@ -177,7 +177,8 @@ class ServiceController extends Controller
 				
 		$this->render('price', array('model'=>$model));
 	}
-	*/
+
+	/*
 	public function actionPrice() {
 			
 		$models = array();
@@ -214,18 +215,28 @@ class ServiceController extends Controller
 		));
 	}
 	
+	*/
 	
-	public function actionPrice2() {
+	
+	public function actionPrice2() 
+	{
 		
 		$model=Yii::app()->session->get('ServiceSelectForm');
 		
-		$service = Service::model()->find('id=:id', array(':id'=>$model->service));
+		$service1 = Service::model()->find('id=:id', array(':id'=>$model->service1));
+		$service2 = Service::model()->find('id=:id', array(':id'=>$model->service2));
 		$role = StaffRole::model()->find('id=:id', array(':id'=>$model->level)); 				
-		$data = Service::model()->getCalculatedPrice($service->time,$role->cpm,$service->offset);	
+		$price1 = Service::model()->getCalculatedPrice($service1->time,$role->cpm,$service1->offset);
+		$price2 = Service::model()->getCalculatedPrice($service2->time,$role->cpm,$service2->offset);
 			
-		$this->render('price2',array('data'=>$data, 'role'=>$role, 'service'=>$service));
+		$data = $price1 + $price2;
+			
+		$this->render('price2',array('data'=>$data, 'role'=>$role, 'service1'=>$service1, 'service2'=>$service2));
 	}
-		
+
+	
+	
+	
 	/**
 	 * Returns the data model based on the primary key given in the GET variable.
 	 * If the data model is not found, an HTTP exception will be raised.

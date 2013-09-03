@@ -5,7 +5,8 @@
 
 <h1>This is the pricing page</h1>
 
-<p>The cost for a <?php echo $service->description ?>
+<p>The cost for a <?php echo $service1->description ?>
+<br> and a <?php echo $service2->description ?>
 <br>with a <?php echo $role->description ?> is:</p>
 
 <h2>Total: &pound;<?php echo $data ?></h2>

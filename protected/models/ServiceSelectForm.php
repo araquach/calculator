@@ -8,7 +8,8 @@
 class ServiceSelectForm extends CFormModel
 {
 	public $level;
-	public $service;
+	public $service1;
+	public $service2;
 
 	/**
 	 * Declares the validation rules.
@@ -17,7 +18,8 @@ class ServiceSelectForm extends CFormModel
 	{
 		return array(
 			// name, email, subject and body are required
-			array('level, service', 'required'),
+			array('level', 'required'),
+			array('service1, service2', 'safe'),
 		);
 	}
 
@@ -30,7 +32,8 @@ class ServiceSelectForm extends CFormModel
 	{
 		return array(
 			'level' => 'Select a level',
-			'service' => 'Select a service',
+			'service1' => 'Select a service',
+			'service2' => 'Select a second service',
 		);
 		
 	}
