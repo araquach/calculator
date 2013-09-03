@@ -32,8 +32,8 @@ class ServiceSelectForm extends CFormModel
 	{
 		return array(
 			'level' => 'Select a level',
-			'service1' => 'Select a service',
-			'service2' => 'Select a second service',
+			'service1' => 'Select a cutting/styling service',
+			'service2' => 'Select a colour service',
 		);
 		
 	}

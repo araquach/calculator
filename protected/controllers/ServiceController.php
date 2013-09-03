@@ -16,7 +16,7 @@ class ServiceController extends Controller
 		return array(
 			'accessControl', // perform access control for CRUD operations
 			'postOnly + delete', // we only allow deletion via POST request
-			'ajaxOnly + field',
+			//'ajaxOnly + price2',
 		);
 	}
 
@@ -231,7 +231,7 @@ class ServiceController extends Controller
 			
 		$data = $price1 + $price2;
 			
-		$this->render('price2',array('data'=>$data, 'role'=>$role, 'service1'=>$service1, 'service2'=>$service2));
+		$this->renderPartial('_price2',array('data'=>$data, 'role'=>$role, 'service1'=>$service1, 'service2'=>$service2));
 	}
 
 	

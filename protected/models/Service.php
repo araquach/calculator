@@ -5,6 +5,8 @@
  *
  * The followings are the available columns in table 'service':
  * @property integer $id
+ * @property integer $sex
+ * @property integer $category
  * @property string $iris_code
  * @property string $description
  * @property integer $time
@@ -39,13 +41,13 @@ class Service extends CActiveRecord
 		// will receive user inputs.
 		return array(
 			array('iris_code, description, time, offset', 'required'),
-			array('time', 'numerical', 'integerOnly'=>true),
+			array('sex, category, time', 'numerical', 'integerOnly'=>true),
 			array('iris_code', 'length', 'max'=>10),
 			array('description', 'length', 'max'=>256),
 			array('offset', 'length', 'max'=>2),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
-			array('id, iris_code, description, time, offset', 'safe', 'on'=>'search'),
+			array('id, sex, catagory, iris_code, description, time, offset', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -67,6 +69,8 @@ class Service extends CActiveRecord
 	{
 		return array(
 			'id' => 'ID',
+			'sex' => 'Gender',
+			'category' => 'Category',
 			'iris_code' => 'Iris Code',
 			'description' => 'Description',
 			'time' => 'Time',
@@ -86,6 +90,8 @@ class Service extends CActiveRecord
 		$criteria=new CDbCriteria;
 
 		$criteria->compare('id',$this->id);
+		$criteria->compare('sex',$this->sex,true);
+		$criteria->compare('category',$this->catagory,true);
 		$criteria->compare('iris_code',$this->iris_code,true);
 		$criteria->compare('description',$this->description,true);
 		$criteria->compare('time',$this->time);

@@ -1,3 +1,5 @@
+<?php Yii::app()->clientScript->registerCoreScript('jquery'); ?>
+
 <div class="form">
 
 <?php $form=$this->beginWidget('CActiveForm', array(
@@ -23,7 +25,7 @@
 	<div class="row">
 		<?php echo $form->labelEx($model,'service1'); ?>
 		<?php echo $form->dropDownList($model, 'service1', CHtml::listData(
-		Service::model()->findAll(), 'id', 'description'),
+		Service::model()->findAll('category = 1'), 'id', 'description'),
 		array('prompt' => 'Select Service')); ?>
 		<?php echo $form->error($model,'service1'); ?>
 	</div>	
@@ -31,7 +33,7 @@
 	<div class="row">
 		<?php echo $form->labelEx($model,'service2'); ?>
 		<?php echo $form->dropDownList($model, 'service2', CHtml::listData(
-		Service::model()->findAll(), 'id', 'description'),
+		Service::model()->findAll('category = 2'), 'id', 'description'),
 		array('prompt' => 'Select Service')); ?>
 		<?php echo $form->error($model,'service2'); ?>
 	</div>	
@@ -41,5 +43,18 @@
 	</div>
 
 <?php $this->endWidget(); ?>
+
+<?php echo CHtml::ajaxButton('Submit',
+Yii::app()->createUrl('service/price2'),
+array(
+	'dataType' => 'html',
+	'type' =>'get',
+	'update' => '#result'
+)
+); ?>
+
+<div id="result">
+
+</div>
 
 </div> 
