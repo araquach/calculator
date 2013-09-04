@@ -38,20 +38,16 @@
 		<?php echo $form->error($model,'service2'); ?>
 	</div>	
 
-	<div class="row buttons">
-		<?php echo CHtml::submitButton('Submit'); ?>
-	</div>
-
+	<?php echo CHtml::ajaxButton('Submit',
+	Yii::app()->createUrl('service/price2'),
+	array(
+		'dataType' => 'html',
+		'type' =>'get',
+		'update' => '#result'
+	)
+	); ?>
+	
 <?php $this->endWidget(); ?>
-
-<?php echo CHtml::ajaxButton('Submit',
-Yii::app()->createUrl('service/price2'),
-array(
-	'dataType' => 'html',
-	'type' =>'get',
-	'update' => '#result'
-)
-); ?>
 
 <div id="result">
 

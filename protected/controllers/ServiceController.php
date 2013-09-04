@@ -164,6 +164,9 @@ class ServiceController extends Controller
 	public function actionPrice() {
 	
 		$model = new ServiceSelectForm;
+		
+		$this->performAjaxValidation($model);
+		
 		if(isset($_POST['ServiceSelectForm']))
 				{
 					$model->attributes=$_POST['ServiceSelectForm'];
