@@ -6,7 +6,7 @@
 	<meta name="language" content="en" />
 
 	<link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->request->baseUrl; ?>/css/normalize.css" />
-	<link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->request->baseUrl; ?>/css/template.css" />
+	<link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->request->baseUrl; ?>/css/calculator.css" />
 	<link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->request->baseUrl; ?>/css/form.css" />
 	
 	
@@ -49,11 +49,11 @@
 
 	<div class="clear"></div>
 
-	<div id="footer">
+	<footer>
 		Copyright &copy; <?php echo date('Y'); ?> by Contra Design<br/>
 		All Rights Reserved.<br/>
 		<?php echo Yii::powered(); ?>
-	</div><!-- footer -->
+	</footer><!-- footer -->
 
 </div><!-- page -->
 
