@@ -13,9 +13,8 @@
 	
 	
 	<?php echo $form->errorSummary($model); ?>
-	<ul class="checklist">
 	
-	<li>
+	<div class="boxRow">
 		<?php echo $form->labelEx($model,'level'); ?>
 		
 		<?php $list = CHtml::listData(
@@ -32,9 +31,9 @@
 		<?php endforeach; ?>
 		<?php echo $form->error($model,'level'); ?>
 		
-	</li> <!--.boxRow-->
+	</div> <!--.boxRow-->
 	
-	<li>
+	<div class="boxRow">
 	
 		<?php echo $form->labelEx($model,'service1'); ?>
 		<?php $list = CHtml::listData(
@@ -51,9 +50,9 @@
 		<?php endforeach; ?>
 		<?php echo $form->error($model,'service1'); ?>
 		
-	</li> <!--.boxRow-->
+	</div> <!--.boxRow-->
 	
-	<li>
+	<div class="boxRow">
 		<?php echo $form->labelEx($model,'service2'); ?>
 		
 		<?php $list = CHtml::listData(
@@ -69,9 +68,9 @@
 		</div>
 		<?php endforeach; ?>
 		<?php echo $form->error($model,'service2'); ?>
-	</li> <!--.boxRow-->
+	</div> <!--.boxRow-->
 	
-	<li>
+	<div class="boxRow">
 		<?php echo $form->labelEx($model,'service3'); ?>
 		
 		<?php $list = CHtml::listData(
@@ -87,9 +86,9 @@
 		</div>
 		<?php endforeach; ?>
 		<?php echo $form->error($model,'service3'); ?>
-	</li> <!--.boxRow-->
+	</div> <!--.boxRow-->
 	
-	<li>
+	<div class="boxRow">
 		<?php echo $form->labelEx($model,'treatment'); ?>
 		
 		<?php $list = CHtml::listData(
@@ -105,8 +104,8 @@
 		</div>
 		<?php endforeach; ?>
 		<?php echo $form->error($model,'treatment'); ?>
-	</li> <!--.boxRow-->
-	</ul>
+	</div> <!--.boxRow-->
+	
 	
 	
 
