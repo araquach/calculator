@@ -14,21 +14,83 @@ body {
 .row {
 	float: left;
 	clear: left;
-	padding: 20px;
-}
-
-.boxRow {
-	width: 900px;
-	float: left;
-}
-
-.formBox {
-	width: 150px;
-	height: 150px;
-	margin-left: 30px;
 	margin-bottom: 30px;
-	float: left;
-	background-color: green;
+}
+
+.checklist {
+list-style: none;
+margin: 0;
+padding: 0;
+}
+ 
+.checklist li {
+float: left;
+margin-right: 10px;
+background: blue;
+width: 70px;
+height: 80px;
+position: relative;
+font-family: "Helvetica Neue", Arial, Helvetica, Geneva, sans-serif;
+color: #FFF;
+padding: 20px;
+}
+ 
+.checklist li.selected {
+background-position: -200px 0;
+}
+ 
+.checklist li.selected .checkbox-select {
+display: none;
+}
+ 
+.checkbox-select {
+display: block;
+float: left;
+position: absolute;
+top: 90px;
+left: 10px;
+width: 85px;
+height: 23px;
+background-color: red;
+text-indent: -9999px;
+}
+ 
+.checklist li input {
+
+}
+ 
+a.checkbox-deselect {
+display: none;
+color: white;
+font-weight: bold;
+text-decoration: none;
+position: absolute;
+top: 120px;
+right: 10px;
+}
+ 
+.checklist li.selected a.checkbox-deselect {
+display: block;
+}
+ 
+.checklist li label {
+display: block;
+text-align: center;
+padding: 8px;
+}
+ 
+.sendit {
+display: block;
+float: left;
+top: 118px;
+left: 10px;
+width: 115px;
+height: 34px;
+border: 0;
+cursor: pointer;
+background: url(i/sendit.gif) no-repeat 0 0;
+text-indent: -9999px;
+margin: 20px 0;
 }
 
 footer {
