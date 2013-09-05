@@ -238,7 +238,7 @@ class ServiceController extends Controller
 			
 		$data = $price1 + $price2 + $price3 + $price4;
 			
-		$this->render('_price2',array('data'=>$data, 'role'=>$role, 'service1'=>$service1, 'service2'=>$service2, 'service3'=>$service3, 'treatment'=>$treatment));
+		$this->renderPartial('_price2',array('data'=>$data, 'role'=>$role, 'service1'=>$service1, 'service2'=>$service2, 'service3'=>$service3, 'treatment'=>$treatment));
 	}
 
 	

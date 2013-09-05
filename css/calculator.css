@@ -26,6 +26,7 @@ padding: 0;
 .checklist li {
 float: left;
 margin-right: 10px;
+margin-top: 10px;
 background: blue;
 width: 70px;
 height: 80px;
@@ -52,7 +53,6 @@ left: 10px;
 width: 85px;
 height: 23px;
 background-color: red;
-text-indent: -9999px;
 }
  
 .checklist li input {
@@ -61,12 +61,13 @@ text-indent: -9999px;
  
 a.checkbox-deselect {
 display: none;
-color: white;
-font-weight: bold;
-text-decoration: none;
+float: left;
 position: absolute;
-top: 120px;
-right: 10px;
+top: 90px;
+left: 10px;
+width: 85px;
+height: 23px;
+background-color: green;
 }
  
 .checklist li.selected a.checkbox-deselect {

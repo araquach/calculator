@@ -111,9 +111,19 @@
 	</div> <!--.row-->	
 	
 	<div class="row buttons">
-	<?php echo CHtml::submitButton('Submit'); ?>	
+	<?php echo CHtml::AjaxSubmitButton('Submit',
+	Yii::app()->createUrl('service/price'),
+	    array(
+	        'dataType' => 'html',
+	        'type' => 'get',
+	        'update' => '#totals'
+		) //ajax
+	);
+	 ?>	
 	</div>
 	
 <?php $this->endWidget(); ?>
+
+<div id="totals"></div>
 
 
