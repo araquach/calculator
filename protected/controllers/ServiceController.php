@@ -165,20 +165,19 @@ class ServiceController extends Controller
 	
 		$model = new ServiceSelectForm;
 		
-		$this->performAjaxValidation($model);
+		// $this->performAjaxValidation($model);
 		
 		if(isset($_POST['ServiceSelectForm']))
 				{
 					$model->attributes=$_POST['ServiceSelectForm'];
 					if($model->validate())
 					{
-						Yii::app()->session->add('ServiceSelectForm',$model);
+						Yii::app()->session->add('Services',$model);
 						$this->redirect(array('price2'));
 					}
 				}
 			
-				
-		$this->render('price', array('model'=>$model));
+				$this->render('price', array('model'=>$model));
 	}
 
 	/*
@@ -223,9 +222,7 @@ class ServiceController extends Controller
 	
 	public function actionPrice2() 
 	{
-		
-		$model=Yii::app()->session->get('ServiceSelectForm');
-		
+		$model=Yii::app()->session->get('Services');
 		$service1 = Service::model()->find('id=:id', array(':id'=>$model->service1));
 		$service2 = Service::model()->find('id=:id', array(':id'=>$model->service2));
 		$service3 = Service::model()->find('id=:id', array(':id'=>$model->service3));
@@ -239,11 +236,10 @@ class ServiceController extends Controller
 		$data = $price1 + $price2 + $price3 + $price4;
 			
 		$this->renderPartial('_price2',array('data'=>$data, 'role'=>$role, 'service1'=>$service1, 'service2'=>$service2, 'service3'=>$service3, 'treatment'=>$treatment));
+		
+		
 	}
 
-	
-	
-	
 	/**
 	 * Returns the data model based on the primary key given in the GET variable.
 	 * If the data model is not found, an HTTP exception will be raised.

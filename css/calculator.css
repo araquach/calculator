@@ -94,6 +94,10 @@ text-indent: -9999px;
 margin: 20px 0;
 }
 
+#totals {
+	clear: both;
+}
+
 footer {
 	clear: both;
 }
