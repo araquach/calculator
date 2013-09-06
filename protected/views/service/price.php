@@ -17,7 +17,7 @@
 	
 	<div class="row">
 	<?php echo $form->labelEx($model,'level'); ?>
-	<ul class="checklist">
+	<ul class="checklist level">
 		<?php $list = CHtml::listData(
 		StaffRole::model()->findAll(), 'id', 'description'); ?>
 		<?php foreach ($list as $key => $value) : ?>
@@ -36,7 +36,7 @@
 		
 	<div class="row">
 		<?php echo $form->labelEx($model,'service1'); ?>
-		<ul class="checklist">
+		<ul class="checklist service1">
 		<?php $list = CHtml::listData(
 		Service::model()->findAll('category = 1'), 'id', 'description'); ?>
 		<?php foreach ($list as $key => $value) : ?>
@@ -55,7 +55,7 @@
 	
 	<div class="row">
 		<?php echo $form->labelEx($model,'service2'); ?>
-		<ul class="checklist">
+		<ul class="checklist service2">
 		<?php $list = CHtml::listData(
 		Service::model()->findAll('category = 2'), 'id', 'description'); ?>
 		<?php foreach ($list as $key => $value) : ?>
@@ -74,7 +74,7 @@
 
 	<div class="row">
 		<?php echo $form->labelEx($model,'service3'); ?>
-		<ul class="checklist">
+		<ul class="checklist service3">
 		<?php $list = CHtml::listData(
 		Service::model()->findAll('category = 3'), 'id', 'description'); ?>
 		<?php foreach ($list as $key => $value) : ?>
@@ -93,7 +93,7 @@
 	
 	<div class="row">
 		<?php echo $form->labelEx($model,'treatment'); ?>
-		<ul class="checklist">
+		<ul class="checklist treatment">
 		<?php $list = CHtml::listData(
 		Service::model()->findAll('category = 4'), 'id', 'description'); ?>
 		<?php foreach ($list as $key => $value) : ?>

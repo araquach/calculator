@@ -35,6 +35,26 @@ font-family: "Helvetica Neue", Arial, Helvetica, Geneva, sans-serif;
 color: #FFF;
 padding: 20px;
 }
+
+.checklist.level li {
+	background-color: #025e6e;
+}
+
+.checklist.service1 li {
+	background-color: #8b137d;
+}
+
+.checklist.service2 li {
+	background-color: #8d4e10;
+}
+
+.checklist.service3 li {
+	background-color: #117c38;
+}
+
+.checklist.treatment li {
+	background-color: #3d117c;
+}
  
 .checklist li.selected {
 background-position: -200px 0;
@@ -52,11 +72,8 @@ top: 90px;
 left: 10px;
 width: 85px;
 height: 23px;
-background-color: red;
-}
- 
-.checklist li input {
-
+background-color: #0e0000;
+text-indent: -9999px;
 }
  
 a.checkbox-deselect {
@@ -67,7 +84,8 @@ top: 90px;
 left: 10px;
 width: 85px;
 height: 23px;
-background-color: green;
+background-color: #f3f5f3;
+text-indent: -9999px;
 }
  
 .checklist li.selected a.checkbox-deselect {
