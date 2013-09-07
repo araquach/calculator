@@ -34,6 +34,7 @@ position: relative;
 font-family: "Helvetica Neue", Arial, Helvetica, Geneva, sans-serif;
 color: #FFF;
 padding: 20px;
+border-radius: 20px;
 }
 
 .checklist.level li {
@@ -74,6 +75,7 @@ width: 85px;
 height: 23px;
 background-color: #0e0000;
 text-indent: -9999px;
+border-radius: 15px;
 }
  
 a.checkbox-deselect {
@@ -86,6 +88,7 @@ width: 85px;
 height: 23px;
 background-color: #f3f5f3;
 text-indent: -9999px;
+border-radius: 15px;
 }
  
 .checklist li.selected a.checkbox-deselect {
