@@ -29,7 +29,7 @@ class ServiceController extends Controller
 	{
 		return array(
 			array('allow',  // allow all users to perform 'index' and 'view' actions
-				'actions'=>array('index','view','price','price2','price3','field'),
+				'actions'=>array('index','view','price','price2','price3','field','praccy'),
 				'users'=>array('*'),
 			),
 			array('allow', // allow authenticated user to perform 'create' and 'update' actions
@@ -45,6 +45,11 @@ class ServiceController extends Controller
 			),
 		);
 	}
+	
+	public function actionPraccy() {
+		$this->render('praccy');
+	}
+	
 
 	/**
 	 * Displays a particular model.

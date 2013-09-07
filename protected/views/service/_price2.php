@@ -1,18 +1,24 @@
 
+<h2>Your Selected Services:</h2>
+<ul>
+	<li><?php echo $service1->description ?></li>
+	<?php if (isset($service2->description)): ?>
+	<li><?php echo $service2->description ?></li>
+	<?php endif; ?>
+	<?php if (isset($service3->description)): ?>
+	<li><?php echo $service3->description ?></li>
+	<?php endif; ?>
+	<?php if (isset($treatment->description)): ?>
+	<li><?php echo $treatment->description ?></li>
+	<?php endif; ?>
+</ul>
 
-<p>The cost for a <?php echo $service1->description ?>
-<?php if (isset($service2->description)): ?>
-<br> plus a <?php echo $service2->description ?>
-<?php endif; ?>
-<?php if (isset($service3->description)): ?>
-<br> plus a <?php echo $service3->description ?>
-<?php endif; ?>
-<?php if (isset($treatment->description)): ?>
-<br> along with a <?php echo $treatment->description ?>
-<?php endif; ?>
-<br>with a <?php echo $role->description ?> is:</p>
+<p>Level of stylist: <?php echo $role->description ?>
 
-<h2>Total: &pound;<?php echo $data ?></h2>
+<p><strong>Total cost: &pound;<?php echo number_format($data, 2) ?></strong></p>
+
+
+
 
 
 
