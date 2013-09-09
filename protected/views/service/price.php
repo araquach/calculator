@@ -9,6 +9,8 @@
 	'enableClientValidation'=>true,
 	'clientOptions'=>array(
 		'validateOnSubmit'=>true,
+	'htmlOptions'=>array(
+		'onsubmit'=>"return false;")/* Disable normal form submit */
 	),
 )); ?>
 
@@ -111,22 +113,30 @@
 	</div> <!--.row-->	
 	
 	<div class="row buttons">
-	<?php echo CHtml::submitButton('submit'); ?>
-	
-	
-	
-	<?php /*echo CHtml::ajaxSubmitButton('Submit',
-	Yii::app()->createUrl('service/price2'),
-	    array(
-	        'dataType' => 'html',
-	        'type' => 'get',
-	        'update' => '#totals'
-		) //ajax
-	);
-	 */ ?>	
-	</div>
-	
+		 <?php echo CHtml::Button('Calculate',array('onclick'=>'send();')); ?> 
+	</div>	
 <?php $this->endWidget(); ?>
+
+<script type="text/javascript">
+ 
+function send()
+{
+	var data=$("#select-form").serialize();
+	$.ajax({
+		type: 'POST',
+    	url: '<?php echo Yii::app()->createAbsoluteUrl("service/price"); ?>',
+   		data:data,
+		success:function(data){
+                $("#totals").html(data);
+              },
+   		error: function(data) { // if error occured
+        	alert("Error occured. Please try again");
+    },
+  		dataType:'html'
+  	});
+}
+</script>
+
 
 <div id="totals"></div>
 

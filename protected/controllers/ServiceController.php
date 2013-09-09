@@ -29,7 +29,7 @@ class ServiceController extends Controller
 	{
 		return array(
 			array('allow',  // allow all users to perform 'index' and 'view' actions
-				'actions'=>array('index','view','price','price2','price3','field'),
+				'actions'=>array('index','view','price','price2','price3','error'),
 				'users'=>array('*'),
 			),
 			array('allow', // allow authenticated user to perform 'create' and 'update' actions
@@ -166,23 +166,28 @@ class ServiceController extends Controller
 	}
 	*/
 	
-	public function actionPrice() {
-	
+	public function actionPrice() 
+	{
 		$model = new ServiceSelectForm;
 		
 		// $this->performAjaxValidation($model);
 		
-		if(isset($_POST['ServiceSelectForm']))
+		if(isset($_POST['ServiceSelectForm'])
+		&& $_POST['ServiceSelectForm']==='select-form')  
 				{
 					$model->attributes=$_POST['ServiceSelectForm'];
 					if($model->validate())
-					{
+					
 						Yii::app()->session->add('Services',$model);
 						$this->redirect(array('price2'));
-					}
 				}
 			
 				$this->render('price', array('model'=>$model));
+	}
+	
+	public function actionError()
+	{
+		$this->renderPartial('_error');
 	}
 
 	/*
@@ -239,8 +244,7 @@ class ServiceController extends Controller
 		$price4 = Service::model()->getCalculatedPrice($treatment->time,$role->cpm,$treatment->offset);
 			
 		$data = $price1 + $price2 + $price3 + $price4;
-		$prices = array($price1, $price2, $price3, $price4);
-			
+		$prices = array($price1, $price2, $price3, $price4);	
 		$this->renderPartial('_price2',array('price'=>$prices, 'data'=>$data, 'role'=>$role, 'service1'=>$service1, 'service2'=>$service2, 'service3'=>$service3, 'treatment'=>$treatment));
 		
 		
