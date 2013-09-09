@@ -28,7 +28,7 @@ class BandController extends Controller
 	{
 		return array(
 			array('allow',  // allow all users to perform 'index' and 'view' actions
-				'actions'=>array('index','view'),
+				'actions'=>array('index','view','json','index2'),
 				'users'=>array('*'),
 			),
 			array('allow', // allow authenticated user to perform 'create' and 'update' actions
@@ -71,7 +71,9 @@ class BandController extends Controller
 		{
 			$model->attributes=$_POST['Band'];
 			if($model->save())
-				$this->redirect(array('view','id'=>$model->id));
+				$this->redirect('json',array(
+					'model'=>$model,
+				));
 		}
 
 		$this->render('create',array(
@@ -126,6 +128,17 @@ class BandController extends Controller
 		$this->render('index',array(
 			'dataProvider'=>$dataProvider,
 		));
+	}
+	
+	public function actionIndex2()
+	{
+		$this->render('index2');
+	}
+	
+	public function actionJson()
+	{
+		$data = Band::model()->findAll();
+		$this->renderPartial('_band', array('data'=>$data));	
 	}
 
 	/**
