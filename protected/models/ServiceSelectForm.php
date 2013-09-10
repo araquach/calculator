@@ -20,8 +20,12 @@ class ServiceSelectForm extends CFormModel
 	{
 		return array(
 			// name, email, subject and body are required
+<<<<<<< HEAD
 			array('level', 'required', 'message'=>'<p>You must select a level of stylist</p>'),
 			array('service1', 'required', 'message'=>'<p>You must select a cutting/styling service</p>'),
+=======
+			array('level, service1', 'required'),
+>>>>>>> c7784216f3d04fb66888345dfa6dd8113f7699a6
 			array('service1, service2, service3, treatment', 'safe'),
 		);
 	}
