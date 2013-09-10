@@ -1,5 +1,7 @@
 <?php Yii::app()->clientScript->registerCoreScript('jquery'); ?>
+<?php Yii::app()->clientScript->registerScriptFile(Yii::app()->baseUrl.'/scripts/service_selector.js');?>
 <?php Yii::app()->clientScript->registerScriptFile(Yii::app()->baseUrl.'/scripts/button.js');?>
+
 
 
 <div class="form">
@@ -13,9 +15,7 @@
 )); ?>
 
 	<p class="note">Fields with <span class="required">*</span> are required.</p>
-	<?php echo $form->errorSummary($model); ?>
-	
-	<div class="row">
+	<div class="row" id="row1">
 	<?php echo $form->labelEx($model,'level'); ?>
 	<ul class="checklist level">
 		<?php $list = CHtml::listData(
@@ -33,15 +33,22 @@
 		</ul>
 		<?php echo $form->error($model,'level'); ?>
 	</div> <!--.row-->
+	<p>Use the menu below to select services by type</p>
+	<ul class="selector">
+		<li><a href="#row2">Cutting/Styling</a></li>
+		<li><a href="#row3">Colouring</a></li>
+		<li><a href="#row4">Technical</a></li>
+		<li><a href="#row5">Treatments</a></li>
+	</ul>
 		
-	<div class="row">
+	<div class="choice row" id="row2">
 		<?php echo $form->labelEx($model,'service1'); ?>
 		<ul class="checklist service1">
 		<?php $list = CHtml::listData(
 		Service::model()->findAll('category = 1'), 'id', 'description'); ?>
 		<?php foreach ($list as $key => $value) : ?>
 		<li>
-			<?php echo $list[$key] ?>
+			<p><?php echo $list[$key] ?></p>
 			<?php echo $form->radioButton($model,'service1', array(
 			'value'=>$key,
 			'uncheckValue'=>null)); ?>
@@ -53,7 +60,7 @@
 		<?php echo $form->error($model,'service1'); ?>
 	</div> <!--.row-->
 	
-	<div class="row">
+	<div class="choice row" id="row3">
 		<?php echo $form->labelEx($model,'service2'); ?>
 		<ul class="checklist service2">
 		<?php $list = CHtml::listData(
@@ -72,7 +79,7 @@
 		<?php echo $form->error($model,'service2'); ?>
 	</div> <!--.row-->	
 
-	<div class="row">
+	<div class="choice row" id="row4">
 		<?php echo $form->labelEx($model,'service3'); ?>
 		<ul class="checklist service3">
 		<?php $list = CHtml::listData(
@@ -91,7 +98,7 @@
 		<?php echo $form->error($model,'service3'); ?>
 	</div> <!--.row-->
 	
-	<div class="row">
+	<div class="choice row" id="row5">
 		<?php echo $form->labelEx($model,'treatment'); ?>
 		<ul class="checklist treatment">
 		<?php $list = CHtml::listData(
@@ -110,8 +117,11 @@
 		<?php echo $form->error($model,'treatment'); ?>
 	</div> <!--.row-->	
 	
+	<?php echo $form->errorSummary($model); ?>
+	
 	<div class="row buttons">
 	<?php echo CHtml::submitButton('submit'); ?>
+	
 	
 	
 	
@@ -127,6 +137,12 @@
 	</div>
 	
 <?php $this->endWidget(); ?>
+
+<div id="summary">
+<ul>
+
+</ul>
+</div>
 
 <div id="totals"></div>
 

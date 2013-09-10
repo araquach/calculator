@@ -20,7 +20,8 @@ class ServiceSelectForm extends CFormModel
 	{
 		return array(
 			// name, email, subject and body are required
-			array('level', 'required'),
+			array('level', 'required', 'message'=>'<p>You must select a level of stylist</p>'),
+			array('service1', 'required', 'message'=>'<p>You must select a cutting/styling service</p>'),
 			array('service1, service2, service3, treatment', 'safe'),
 		);
 	}
@@ -33,11 +34,11 @@ class ServiceSelectForm extends CFormModel
 	public function attributeLabels()
 	{
 		return array(
-			'level' => 'Select a level',
-			'service1' => 'Select a cutting/styling service',
-			'service2' => 'Select a colour service',
-			'service3' => 'Select a technical service',
-			'treatment' => 'Select a treatment',
+			'level' => '<h3>Select a level of Stylist</h3>',
+			'service1' => '<h3>Cutting/styling services</h3>',
+			'service2' => '<h3>Colour services</h3>',
+			'service3' => '<h3>Technical services</h3>',
+			'treatment' => '<h3>Treatments</h3>',
 		);
 		
 	}
