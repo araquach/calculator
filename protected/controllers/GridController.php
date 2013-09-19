@@ -8,6 +8,7 @@ class GridController extends Controller {
 			array(
 				'name'=>'Adam Carter',
 				'id'=>'2',
+				'hobbies'=>array('football','golf','tennis'),
 				'forumName'=>'Jakata',
 				'memberSince'=>'November 2003',
 				'location'=>'Warrington',

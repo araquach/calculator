@@ -177,8 +177,19 @@ class ServiceController extends Controller
 					$model->attributes=$_POST['ServiceSelectForm'];
 					if($model->validate())
 					{
-						Yii::app()->session->add('Services',$model);
-						$this->redirect(array('price2'));
+						$service1 = Service::model()->find('id=:id', array(':id'=>$model->service1));
+						$service2 = Service::model()->find('id=:id', array(':id'=>$model->service2));
+						$service3 = Service::model()->find('id=:id', array(':id'=>$model->service3));
+						$treatment = Service::model()->find('id=:id', array(':id'=>$model->treatment));
+						$role = StaffRole::model()->find('id=:id', array(':id'=>$model->level)); 				
+						$price1 = Service::model()->getCalculatedPrice($service1->time,$role->cpm,$service1->offset);
+						$price2 = Service::model()->getCalculatedPrice($service2->time,$role->cpm,$service2->offset);
+						$price3 = Service::model()->getCalculatedPrice($service3->time,$role->cpm,$service3->offset);
+						$price4 = Service::model()->getCalculatedPrice($treatment->time,$role->cpm,$treatment->offset);
+							
+						$data = $price1 + $price2 + $price3 + $price4;
+						$prices = array($price1, $price2, $price3, $price4);
+						$this->renderPartial('_price2',array('price'=>$prices, 'data'=>$data, 'role'=>$role, 'service1'=>$service1, 'service2'=>$service2, 'service3'=>$service3, 'treatment'=>$treatment));
 					}
 				}
 			
