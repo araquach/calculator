@@ -7,12 +7,6 @@
 <?php echo $this->renderPartial('_service_form', array('model'=>$model)); ?>
 
 
-<div id="summary">
-<ul>
-
-</ul>
-</div>
-
 <div id="totals"></div>
 
 
