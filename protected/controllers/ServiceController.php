@@ -201,7 +201,9 @@ class ServiceController extends Controller
 		$data = $price1 + $price2 + $price3 + $price4;
 		$prices = array($price1, $price2, $price3, $price4);
 			
-		$this->renderPartial('_price2',array('price'=>$prices, 'data'=>$data, 'role'=>$role, 'service1'=>$service1, 'service2'=>$service2, 'service3'=>$service3, 'treatment'=>$treatment));
+		echo CJSON::encode(array($model, $service1, $service2, $service3, $treatment, $role, $price1, $price2, $price3, $price4, $data, $prices));
+		
+		/* $this->renderPartial('_price2',array('price'=>$prices, 'data'=>$data, 'role'=>$role, 'service1'=>$service1, 'service2'=>$service2, 'service3'=>$service3, 'treatment'=>$treatment)); */
 		
 		
 	}

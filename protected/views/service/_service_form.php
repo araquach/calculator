@@ -120,20 +120,19 @@
 	<?php echo $form->errorSummary($model); ?>
 	
 	<div class="row buttons">
-	<?php echo CHtml::submitButton('submit'); ?>
+	<?php // echo CHtml::submitButton('submit'); ?>
 	
-	
-	
-	
-	<?php /*echo CHtml::ajaxSubmitButton('Submit',
+	<?php echo CHtml::ajaxSubmitButton('Submit',
 	Yii::app()->createUrl('service/price2'),
 	    array(
-	        'dataType' => 'html',
+	        'dataType' => 'json',
 	        'type' => 'get',
-	        'update' => '#totals'
+	        'success' => 'function(result) {
+	        	$("#totals").html(result.level + " " + result.service1 + " " + result.service2);
+	        }'
 		) //ajax
 	);
-	 */ ?>	
+	  ?>	
 	</div>
 	
 <?php $this->endWidget(); ?>
