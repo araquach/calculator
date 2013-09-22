@@ -172,13 +172,9 @@ class ServiceController extends Controller
 		
 		// $this->performAjaxValidation($model);
 		
-		if(isset($_POST['ServiceSelectForm']))
+		if($_POST['ServiceSelectForm']==='service-form')
 				{
-					$model->attributes=$_POST['ServiceSelectForm'];
-					if($model->validate())
-					{
-						Yii::app()->session->add('Services',$model);
-					}
+					Yii::app()->session->add('Services',$model);
 				}
 			
 				$this->render('price', array('model'=>$model));
@@ -193,7 +189,7 @@ class ServiceController extends Controller
 		$service3 = Service::model()->find('id=:id', array(':id'=>$model->service3));
 		$treatment = Service::model()->find('id=:id', array(':id'=>$model->treatment));
 		$role = StaffRole::model()->find('id=:id', array(':id'=>$model->level)); 				
-		$price1 = Service::model()->getCalculatedPrice($service1->time,$role->cpm,$service1->offset);
+		$price1 = 10;
 		$price2 = Service::model()->getCalculatedPrice($service2->time,$role->cpm,$service2->offset);
 		$price3 = Service::model()->getCalculatedPrice($service3->time,$role->cpm,$service3->offset);
 		$price4 = Service::model()->getCalculatedPrice($treatment->time,$role->cpm,$treatment->offset);
@@ -201,7 +197,7 @@ class ServiceController extends Controller
 		$data = $price1 + $price2 + $price3 + $price4;
 		$prices = array($price1, $price2, $price3, $price4);
 			
-		echo CJSON::encode(array($model, $service1, $service2, $service3, $treatment, $role, $price1, $price2, $price3, $price4, $data, $prices));
+		echo CJSON::encode(array($model, $service1, $service2, $service3, $treatment, $role, $price1, $price2, $price3, $price4, $data));
 		
 		/* $this->renderPartial('_price2',array('price'=>$prices, 'data'=>$data, 'role'=>$role, 'service1'=>$service1, 'service2'=>$service2, 'service3'=>$service3, 'treatment'=>$treatment)); */
 		

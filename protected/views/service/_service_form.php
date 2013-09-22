@@ -8,9 +8,11 @@
 
 <?php $form=$this->beginWidget('CActiveForm', array(
 	'id'=>'select-form',
-	'enableClientValidation'=>true,
+	'enableClientValidation'=>false,
 	'clientOptions'=>array(
-		'validateOnSubmit'=>true,
+		'validateOnSubmit'=>false,
+	'htmlOptions'=>array(
+		'onsubmit'=>"return false;")	
 	),
 )); ?>
 
@@ -120,9 +122,9 @@
 	<?php echo $form->errorSummary($model); ?>
 	
 	<div class="row buttons">
-	<?php // echo CHtml::submitButton('submit'); ?>
+	<?php  echo CHtml::Button('submit', array('onclick'=>'send()')); ?>
 	
-	<?php echo CHtml::ajaxSubmitButton('Submit',
+	<?php  /* echo CHtml::ajaxSubmitButton('Submit',
 	Yii::app()->createUrl('service/price2'),
 	    array(
 	        'dataType' => 'json',
@@ -132,7 +134,40 @@
 	        }'
 		) //ajax
 	);
-	  ?>	
+	   */ ?>	
 	</div>
 	
 <?php $this->endWidget(); ?>
+
+<script type="text/javascript">
+ 
+function send()
+ {
+ 
+   var data=$("#select-form").serialize();
+ 
+ /*
+  $.ajax({
+   type: 'POST',
+    url: '<?php echo Yii::app()->createAbsoluteUrl("service/price2"); ?>',
+   data:data,
+success:function(data){
+                alert(data); 
+              },
+   error: function(data) { // if error occured
+         alert("Error occured.please try again");
+         alert(data);
+    },
+ 
+  dataType:'html'
+  });
+  */
+  
+  $.getJSON('<?php echo Yii::app()->createAbsoluteUrl("service/price2")?>', data, processInfo);
+}
+
+function processInfo(data) {
+	$("#totals").html(data.role + " " + data.service1 + " " + data.service2);
+}
+ 
+</script>
