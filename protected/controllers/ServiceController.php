@@ -183,7 +183,7 @@ class ServiceController extends Controller
 	
 	public function actionPrice2() 
 	{
-		$model=Yii::app()->session->get('Services');
+		$model=array(Yii::app()->session->get('Services'));
 		$service1 = Service::model()->find('id=:id', array(':id'=>$model->service1));
 		$service2 = Service::model()->find('id=:id', array(':id'=>$model->service2));
 		$service3 = Service::model()->find('id=:id', array(':id'=>$model->service3));
@@ -197,7 +197,7 @@ class ServiceController extends Controller
 		$data = $price1 + $price2 + $price3 + $price4;
 		$prices = array($price1, $price2, $price3, $price4);
 			
-		echo CJSON::encode(array($model, $service1, $service2, $service3, $treatment, $role, $price1, $price2, $price3, $price4, $data));
+		echo CJSON::encode(array('service2'=>$service2));
 		
 		/* $this->renderPartial('_price2',array('price'=>$prices, 'data'=>$data, 'role'=>$role, 'service1'=>$service1, 'service2'=>$service2, 'service3'=>$service3, 'treatment'=>$treatment)); */
 		

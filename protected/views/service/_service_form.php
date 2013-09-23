@@ -167,7 +167,7 @@ success:function(data){
 }
 
 function processInfo(data) {
-	$("#totals").html(data.role + " " + data.service1 + " " + data.service2);
+	$("#totals").html(data.service2.description);
 }
  
 </script>
